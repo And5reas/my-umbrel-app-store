@@ -20,7 +20,6 @@ services:
       POSTGRES_HOST: db
       POSTGRES_PORT: 5432
       POSTGRES_DB: Smart-Balance
-      SQLALCHEMY_DATABASE_URL: postgresql://backend:$APP_PASSWORD@db:5432/Smart-Balance
       BASE_URL: https://balanca-backend.andreaswilliamporcel.com.br
     ports:
       - "8000:8010"
@@ -34,7 +33,7 @@ services:
       POSTGRES_USER: balanca_tcc
       POSTGRES_PASSWORD: $APP_PASSWORD
     volumes:
-      - sb-postgres-data:/home/umbrel/postgres
+      - sb-postgres-data:/var/lib/postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U backend -d Smart-Balance"]
       interval: 10s
