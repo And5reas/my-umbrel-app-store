@@ -2,15 +2,15 @@ manifestVersion: 1
 id: balanca-backend
 name: Balanca Backend TCC
 tagline: Backend do meu TCC
-icon: https://i.imgur.com/AooZfKN.png
+icon: logo.svg
 category: Development
 version: "1.0.0"
 port: 8010
 description: >-
-  Backend da balaça do meu TCC de Engenharia da Computação
+  Backend da balaca do meu TCC de Engenharia da Computacao
 
-  Este backend possui todo o CRUD da aplicação e lógica de negócio.
-developer: Andreas William Porcel, Lucas Pereira, Anna Nunes
+  Este backend possui todo o CRUD da aplicação e logica de negocio.
+developer: And5reas
 website: https://umbrel.com
 submitter: And5reas
 submission: https://github.com/And5reas/my-umbrel-app-store
