@@ -29,7 +29,7 @@ services:
       POSTGRES_USER: balanca_tcc
       POSTGRES_PASSWORD: $APP_PASSWORD
     volumes:
-      - sb-postgres-data:/var/lib/postgresql/data
+      - sb-postgres-data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U balanca_tcc -d Smart-Balance"]
       interval: 10s
