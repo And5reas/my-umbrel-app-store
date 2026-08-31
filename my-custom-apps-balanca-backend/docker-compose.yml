@@ -1,4 +1,12 @@
+version: "3.7"
+
 services:
+  app_proxy:
+    environment:
+      # The format here is: <app-id>_<docker-service-name>_1
+      APP_HOST: my-custom-apps-balanca-backend_server_1
+      APP_PORT: 8000
+
   api:
     image: linkado36778/sb-backend:latest
     container_name: sb-backend
