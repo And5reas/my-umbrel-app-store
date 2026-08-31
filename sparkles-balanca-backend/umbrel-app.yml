@@ -4,7 +4,7 @@ name: Balanca Backend TCC
 tagline: Backend do meu TCC
 icon: https://i.imgur.com/IleFL5N.png
 category: Development
-version: "1.0.0"
+version: "1.0.1"
 port: 8000
 description: >-
   Backend da balaca do meu TCC de Engenharia da Computacao
