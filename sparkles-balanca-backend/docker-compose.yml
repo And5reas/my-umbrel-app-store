@@ -3,13 +3,11 @@ version: "3.7"
 services:
   app_proxy:
     environment:
-      # The format here is: <app-id>_<docker-service-name>_1
       APP_HOST: sparkles-balanca-backend_server_1
       APP_PORT: 8000
 
-  api:
+  server:
     image: linkado36778/sb-backend:latest
-    container_name: sb-backend
     restart: unless-stopped
     depends_on:
       db:
@@ -21,21 +19,18 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_DB: Smart-Balance
       BASE_URL: https://balanca-backend.andreaswilliamporcel.com.br
-    ports:
-      - "8000:8000"
 
   db:
     image: postgres:18-alpine
-    container_name: sb-postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: Smart-Balance
       POSTGRES_USER: balanca_tcc
       POSTGRES_PASSWORD: $APP_PASSWORD
     volumes:
-      - sb-postgres-data:/var/lib/postgres
+      - sb-postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U backend -d Smart-Balance"]
+      test: ["CMD-SHELL", "pg_isready -U balanca_tcc -d Smart-Balance"]
       interval: 10s
       timeout: 5s
       retries: 5
