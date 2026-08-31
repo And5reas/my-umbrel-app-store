@@ -5,7 +5,7 @@ services:
     environment:
       # The format here is: <app-id>_<docker-service-name>_1
       APP_HOST: sparkles-balanca-backend_server_1
-      APP_PORT: 8000
+      APP_PORT: 8010
 
   api:
     image: linkado36778/sb-backend:latest
@@ -34,7 +34,7 @@ services:
       POSTGRES_USER: balanca_tcc
       POSTGRES_PASSWORD: $APP_PASSWORD
     volumes:
-      - sb-postgres-data:/var/lib/postgresql
+      - sb-postgres-data:/home/umbrel/postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U backend -d Smart-Balance"]
       interval: 10s
