@@ -2,7 +2,7 @@ manifestVersion: 1
 id: sparkles-balanca-backend
 name: Balanca Backend TCC
 tagline: Backend do meu TCC
-icon: https://imgur.com/a/Vc74U0T
+icon: https://i.imgur.com/IleFL5N.png
 category: Development
 version: "1.0.0"
 port: 8010
