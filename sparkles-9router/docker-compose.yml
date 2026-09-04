@@ -21,15 +21,5 @@ services:
       NODE_ENV: production
       HEADROOM_URL: http://headroom:8787
 
-    depends_on:
-      - sparkles-9router_headroom_1
-
     volumes:
       - /home/umbrel/umbrel/app-data/sparkles-9router/data/db:/app/data
-
-  headroom:
-    image: ghcr.io/chopratejas/headroom:latest
-    container_name: sparkles-9router_headroom_1
-    restart: unless-stopped
-    ports:
-      - "8787:8787"
