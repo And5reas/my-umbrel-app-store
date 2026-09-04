@@ -11,6 +11,7 @@ services:
     image: decolua/9router:latest
     restart: unless-stopped
     environment:
+      INITIAL_PASSWORD: batata123!
       DATA_DIR: /app/data
       PORT: 20128
       HOSTNAME: 0.0.0.0
