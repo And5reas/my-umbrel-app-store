@@ -1,0 +1,62 @@
+manifestVersion: 2
+id: sparkles-9router
+name: 9Router
+tagline: Gerenciador dos modelos de IA Gratuitos
+icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDQU8Vpm9EzKC_eQkKAc9iFHBcFluCMlodNJ_c3o3Tjw&s=10
+category: Development
+version: "0.5.35"
+port: 48032
+description: >-
+  Stop wasting money, tokens and hitting limits:
+
+  ❌ Subscription quota expires unused every month
+  ❌ Rate limits stop you mid-coding
+  ❌ Tool outputs (git diff, grep, ls...) burn tokens fast
+  ❌ Expensive APIs ($20-50/month per provider)
+  ❌ Manual switching between providers
+
+  9Router solves this:
+
+  ✅ RTK Token Saver - Auto-compress tool_result content, save 20-40% tokens per request
+  ✅ Maximize subscriptions - Track quota, use every bit before reset
+  ✅ Auto fallback - Subscription → Cheap → Free, zero downtime
+  ✅ Multi-account - Round-robin between accounts per provider
+  ✅ Universal - Works with Claude Code, Codex, Cursor, Cline, any CLI tool
+developer: Decolua
+website: https://9router.com/
+submitter: And5reas
+submission: https://github.com/And5reas/my-umbrel-app-store/tree/master/sparkles-9router
+repo: https://github.com/And5reas/my-umbrel-app-store/tree/master/sparkles-9router
+support: https://github.com/And5reas/my-umbrel-app-store/issues
+gallery:
+  - https://raw.githubusercontent.com/decolua/9router/master/images/9router.png
+  - https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=
+  - https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=
+releaseNotes: >-
+  Features:
+
+  xAI: Grok Imagine video generation (/v1/videos) + CLI
+  CLI tools: Grok Build setup — writes [model.9router] to ~/.grok/config.toml
+  GitHub Copilot: route Claude models through Copilot native /v1/messages
+  Kiro: add GPT-5.6 model family (#2596)
+  RTK: X-9Router-Token-Saver header to bypass token savers per request
+  Providers: quota visibility settings
+  Translator: drop temperature for all Claude models
+  i18n: Thai (th) + Persian (fa) translations / README
+
+  Fixes:
+
+  Providers: bulk-add API keys no longer overwrite existing keys (gap-fill Key N)
+  Anthropic: lowercase anthropic-version header to prevent duplication on /v1/messages
+  Alicode-intl: use DashScope compatible-mode endpoint so standard keys work
+  Grok CLI: align Grok Build with current subscription protocol (#2590)
+  Grok CLI: surface expiresAt so proactive token refresh fires (#2546)
+  Kiro: improve direct session cache reuse
+  Models: populate capabilities for live-catalog LLM models
+  Models: list compatible provider models in /v1/models
+  Thinking: send explicit thinking:{type:adaptive} alongside output_config.effort
+  Translator: strip client_metadata when converting openai-responses to openai
+dependencies: []
+path: "https://9router.andreaswilliamporcel.com.br"
+defaultUsername: ""
+defaultPassword: ""

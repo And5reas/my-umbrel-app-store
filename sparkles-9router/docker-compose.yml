@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: sparkles-9router_server_1
+      APP_PORT: 48032
+      PROXY_AUTH_ADD: "false"
+
+  server:
+
+services:
+  image: decolua/9router:latest
+  restart: unless-stopped
+
+  ports:
+    - "20128:48032"
+
+  environment:
+    DATA_DIR: /app/data
+    PORT: 20128
+    HOSTNAME: 0.0.0.0
+
+  volumes:
+    - ${APP_DATA_DIR}/data/db:/app/data
