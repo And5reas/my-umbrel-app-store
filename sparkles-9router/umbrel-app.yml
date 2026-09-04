@@ -4,7 +4,7 @@ name: 9Router
 tagline: Gerenciador dos modelos de IA Gratuitos
 icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDQU8Vpm9EzKC_eQkKAc9iFHBcFluCMlodNJ_c3o3Tjw&s=10
 category: Development
-version: "0.5.55"
+version: "0.5.65"
 port: 20128
 description: >-
   Stop wasting money, tokens and hitting limits:
