@@ -8,9 +8,6 @@ services:
       PROXY_AUTH_ADD: "false"
 
   server:
-
-services:
-  server:
     image: decolua/9router:latest
     restart: unless-stopped
 
