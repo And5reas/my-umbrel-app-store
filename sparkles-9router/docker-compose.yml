@@ -4,7 +4,7 @@ services:
   app_proxy:
     environment:
       APP_HOST: sparkles-9router_server_1
-      APP_PORT: 48032
+      APP_PORT: 20128
       PROXY_AUTH_ADD: "false"
 
   server:
@@ -14,7 +14,7 @@ services:
   restart: unless-stopped
 
   ports:
-    - "20128:48032"
+    - "20128:20128"
 
   environment:
     DATA_DIR: /app/data
