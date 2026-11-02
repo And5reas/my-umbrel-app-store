@@ -1,0 +1,49 @@
+manifestVersion: 1
+id: sparkles-todoapp
+storage:
+  dataRoot: data
+category: developer
+name: TODOapp
+version: "1.0.0"
+tagline: Lista de tarefas (To-Do) com Angular e Node.js
+icon: https://raw.githubusercontent.com/And5reas/my-umbrel-app-store/master/sparkles-todoapp/icon.png
+description: >-
+  TODOapp é uma aplicação de lista de tarefas (To-Do) composta por frontend Angular e backend Node.js/Express, com banco de dados MongoDB persistido nos dados do aplicativo.
+
+
+  - Frontend Angular (build de produção) servido pelo Nginx, com proxy reverso de /api para o backend pela rede interna do Docker
+
+
+  - Backend Node.js + Express + Mongoose com CRUD completo de tarefas (criar, listar, atualizar e remover)
+
+
+  - Banco MongoDB com autenticação por senha única por instalação e dados persistidos em app-data
+
+
+  - Healthchecks em todos os serviços e políticas de reinicialização automáticas
+
+
+  - Acesso pelo endereço disponibilizado pelo UmbrelOS, sem necessidade de portas expostas
+releaseNotes: >-
+  Versão inicial na Sparkles App Store.
+
+  - Frontend Angular + Nginx com proxy reverso para a API
+
+  - Backend Express com CRUD de tarefas e endpoint de saúde /api/health
+
+  - MongoDB persistido nos dados do aplicativo com autenticação
+developer: And5reas
+website: https://github.com/And5reas/TODOapp_unisanta
+dependencies: []
+repo: https://github.com/And5reas/TODOapp_unisanta
+support: https://github.com/And5reas/TODOapp_unisanta/issues
+port: 3210
+gallery:
+  - https://raw.githubusercontent.com/And5reas/my-umbrel-app-store/master/sparkles-todoapp/gallery/1.png
+  - https://raw.githubusercontent.com/And5reas/my-umbrel-app-store/master/sparkles-todoapp/gallery/2.png
+  - https://raw.githubusercontent.com/And5reas/my-umbrel-app-store/master/sparkles-todoapp/gallery/3.png
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+submitter: And5reas
+submission: https://github.com/And5reas/my-umbrel-app-store/tree/master/sparkles-todoapp

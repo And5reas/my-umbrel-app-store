@@ -1,0 +1,80 @@
+version: "3.7"
+
+# Pacote do TODOapp para a Sparkles App Store (umbrelOS).
+# Padrão oficial: sem "ports:", sem "networks:" e sem "container_name:" —
+# o UmbrelOS injeta a rede padrão, o nome do container
+# (<app-id>_<serviço>_1) e publica o app pela porta do manifesto via app_proxy.
+
+services:
+  # Roteador oficial do UmbrelOS: expõe a porta 3210 do manifesto
+  # apontando para o container do frontend.
+  app_proxy:
+    environment:
+      APP_HOST: sparkles-todoapp_frontend_1
+      APP_PORT: 8080
+      # Autenticação Umbrel mantida ligada por padrão (padrão oficial).
+      # Para desativar o login do Umbrel neste app, adicione:
+      # PROXY_AUTH_ADD: "false"
+
+  # ---------- Frontend: Angular (build) servido pelo Nginx ----------
+  frontend:
+    # Digest do índice no Docker Hub (linux/amd64). Ao publicar uma nova
+    # versão da imagem, atualize o digest (ver docs/GUIA-UMBREL.md).
+    image: and5reas/todoapp-frontend:latest@sha256:d9fd670c3177b48cdd0e65dedd032929cdd13ad6ceba9776433293968809479e
+    restart: on-failure
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      # Proxy reverso do Nginx: /api/* -> backend pela rede interna do Docker
+      # (nomes de serviço do Compose, sem localhost).
+      BACKEND_UPSTREAM: http://backend:3000
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ---------- Backend: Node.js + Express + Mongoose ----------
+  backend:
+    # Digest do índice no Docker Hub (linux/amd64).
+    image: and5reas/todoapp-backend:latest@sha256:900a26676b8ec76663dead68c376900e5792f32a53247bc82d3494df89e7828e
+    restart: on-failure
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOST: "0.0.0.0"
+      # Senha única por instalação fornecida pelo UmbrelOS (APP_PASSWORD).
+      MONGO_URL: mongodb://root:${APP_PASSWORD}@mongodb:27017/todoapp?authSource=admin
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:3000/api/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ---------- Banco de dados ----------
+  mongodb:
+    # Imagem oficial multi-arch (linux/amd64 + linux/arm64), pinada por digest.
+    image: mongo:8@sha256:e16e606f792ea89d2b4907b54e5e31eb86a7a23e27231dce3a982cc8f2d73cd2
+    restart: on-failure
+    environment:
+      # Cria o usuário root na primeira inicialização (auth habilitado).
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${APP_PASSWORD}
+    volumes:
+      # Persistência nos dados do app (sobrevive a reinício, atualização e
+      # é incluída nos backups do UmbrelOS).
+      - ${APP_DATA_DIR}/data/db:/data/db
+    # Sem "user:": a entrypoint oficial do mongo roda como root para corrigir
+    # as permissões de /data/db e só então faz drop para o usuário mongodb.
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval \"db.adminCommand('ping').ok\" >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
